@@ -1,0 +1,33 @@
+useradd -M [-M : 사용자의 홈 디렉토리를 생성하지 않음]
+
+ls -R chown -R rm -R [-R : 디렉토리 아래 모든]
+
+make install & [& : 실행문 맨 뒤에 사용 시, 백그라운드에서 작업]
+
+ps -ef | grep mysql ls -l | grep root [ | grep : 앞의 명령어에서 단어 검색]
+
+[gcc 컴파일]
+
+gcc 파일명(*.c) : Default로 out 파일이 생성된다. (ex a.out)
+gcc -c 파일명(*.c) : 오브젝트 파일을 생성한다.
+gcc -c 오브젝트_파일명(.o) 파일명(.c) gcc -o 실행파일 파일명(*.c)
+gcc -o 실행파일명(.out) 오브젝트_파일명(.o)
+[Makefile] hello : hello.o main.o gcc -o hello hello.o main.o
+
+hello.o : hello.c gcc -c hello.c
+
+main.o : main.c gcc -c main.c
+
+clean : rm -f *.o hello
+
+[mysql] -u 사용자이름 -p 사용자암호 -D 바로 사용할 Database
+
+
+2>/dev/null : Error를 출력하지 않는다
+
+
+# gzip webmaster.tar : zip 파일로 압축 (용량 적어짐) -> webmaster.tar.gz
+# gzip -d webmaster.tar.gz : zip 파일 압축해제 -> webmaster.tar
+# tar xvfz webmaster.tar.gz : zip, tar를 한번에 압축 해제 -> webmaster
+
+

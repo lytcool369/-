@@ -1,0 +1,104 @@
+
+Git 설치 (CentOS)
+
+
+
+1. zlib 설치
+# cd ~
+# wget http://www.zlib.net/fossils/zlib-1.2.8.tar.gz
+# tar xvfz zlib-1.2.8.tar.gz
+# cd zlib-1.2.8
+# ./configure --prefix=/usr/local
+# make
+# make install
+
+
+
+
+2. perl 라이브러리 설치
+# cd ~
+# yum -y install perl-devel
+
+
+
+
+
+3. curl-devel 설치
+# cd ~
+# yum -y install curl-devel
+
+
+
+
+
+4. git 설치
+# cd ~
+# wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.6.4.tar.gz
+# tar xvfz git-2.6.4.tar.gz
+# cd git-2.6.4
+# yum -y install gettext
+# ./configure --prefix=/usr/local/ds/git2.6.4
+# make
+# make install
+
+# cd ~
+# ln -s /usr/local/ds/git2.6.4 /usr/local/ds/git  (git2.6.4 명령어 간략화)
+
+5. path 설정
+# vi /etc/profile
+   -> 맨 아래줄에 추가
+       # git
+       export PATH=${PATH}:/usr/local/ds/git/bin
+
+
+
+
+
+5. git 설치확인
+# git --version
+
+
+
+
+
+6. git 사용자 설정
+# git config --global user.name LimYunTaek
+# git config --global user.email lytcool369@gmail.com
+
+
+
+
+
+7. push 비번 저장 (레포지토리 별로)
+# git config credential.helper store
+# git config --global credential.helper 'cache --timeout 2592000'
+
+
+
+
+
+8. git 실행
+# cd dowork/helloWorld
+
+# git init
+# git add -A
+
+# git commit -m "first commit"
+# git remote add origin https://github.com/lytcool369/LimYunTaek.git
+# git push -u origin master
+
+# vi README.md
+  -> # helloWorld
+
+      ### 다양한 helloWorld 예제
+
+      #### 1. C 버전
+
+      #### 2. Python 버전
+
+      #### 3. shell script 버전
+
+# git add -A
+# git commit -m "README.md 수정"
+# git push
+

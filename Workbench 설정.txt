@@ -1,0 +1,21 @@
+1. database 생성
+create database webdb
+
+2. mariadb 계정 생성
+create user 'webdb'@'192.168.1.%' identified by 'webdb';
+flush privileges;
+
+3. 권한 주기
+grant all privileges on webdb.* to 'webdb'@'192.168.1.%';
+flush privileges;
+
+4. 사용자 계정 없애기
+drop user 'webdb'@'192.168.1.%';
+
+5. 데이더베이스 삭제
+drop database webdb;
+
+
+
+* 네트워크 재부팅
+/etc/init.d/network restart

@@ -1,0 +1,37 @@
+
+java 8 버전이 완성도가 높으므로, java 8을 채택하여 jdk 다운로드
+
+
+
+1. Xshell 을 통해 서버에 파일을 업로드
+cd D:\data-science\[3] 자료\07.java		: Xshell 에서 해당 경로로 이동
+sftp webmaster@192.168.1.37		: sftp프로그램으로 webmaster 서버 연결 
+put jdk-8u261-linux-x64.tar.gz 		: 해당 경로의 jdk 파일을 Linux 서버의 webmaster로 올림 (get 일 경우 서버에서 가져옴)
+
+
+
+
+
+2. webmaster 로그인 후, root 계정 로그인
+# mv /home/webmaster/jdk-8u261-linux-x64.tar.gz .	: webmaster에 업로드한 jdk파일을 root로 이동
+# tar -zxvf jdk-8u261-linux-x64.tar.gz			: 압축 해제
+# mv jdk1.8.0_261 /usr/local/ds/jdk1.8			: 해당 경로로 이동시키면서, 실행파일 명을 바꾸기
+# ln -s /usr/local/ds/jdk1.8 /usr/local/ds/java		: jdk1.8 파일명을 java로 명명
+
+1. # cd usr/local/ds
+   # ln -s jdk1.8 java
+2. # ln -s usr/local/ds/jdk1.8 usr/local/ds/java	: 1, 2번 방법중 택1 하여 링크 설정을 한다.
+
+# vi /etc/profile
+  -> 맨 아래줄에 환경설정 추가
+      # java
+        export JAVA_HOME=/usr/local/ds/java
+        export PATH=${PATH}:${JAVA_HOME}/bin
+        export CLASSPATH=.:${JAVA_HOME}/lib/tools.jar
+
+
+
+
+
+3. 재시작 후, 실행 확인
+# java -version

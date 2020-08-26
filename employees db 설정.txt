@@ -1,0 +1,58 @@
+
+1. 자료 이동
+# cd D:\data-science\[3] 자료\05.mariadb	: Xshell 에서 해당 경로로 이동
+# sftp webmaster@192.168.1.37		: sftp프로그램으로 webmaster 서버 연결 
+# put employees_db.zip	 		: 해당 경로의 zip파일을 Linux 서버의 webmaster로 올림 (get 일 경우 서버에서 가져옴)
+# mv /home/webmaster/employees_db.zip .	: webmaster 에서 루트계정으로 파일 이동
+# yum -y install unzip			: 압축 해제 프로그램 설치
+# unzip employees_db.zip			: 압축 해제
+
+
+
+
+2. database 생성
+> create database employees;
+
+
+
+
+3. mariadb 계정 생성
+> create user 'employees'@'192.168.1.%' identified by 'employees';
+> flush privileges;
+
+
+
+
+4. 권한 주기
+> grant all privileges on employees.* to 'employees'@'192.168.1.%';
+> flush privileges;
+
+  -- 사용자 계정 없애기
+     > drop user 'employees'@'192.168.1.%';
+
+  -- 데이더베이스 삭제
+     > drop database employees;
+
+  -- 네트워크 재부팅
+     # /etc/init.d/network restart
+
+
+
+
+
+5. Workbench 해당 계정, 데이터베이스로 접속
+
+
+
+
+6. CentOs 에서 압축 해제한 mysql 파일 올리기
+# mysql -u root -D employees -p < employees.sql
+  (localhost 이기 때문에 root 계정으로 접속)
+ 
+
+
+
+
+7. Workbench 에서 리버스 엔지니어 설정
+* 목록에서 Database -> Reverse Engineer 쭉 진행하기
+
