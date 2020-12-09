@@ -1,0 +1,16 @@
+### Visual Stdio Code
+
+1. 확장 마켓에서 "mongodb" 검색
+
+2. MongoDB for VS Code 설치
+
+3. Connections 작업 (다른 txt 파일 참고하여 Linux 서버 환경의 방화벽 열어 두기)
+
+4. 터미널 - 새 터미널
+	> npm init
+	> npm install mongodb --save
+	> npm install
+	  (전부 엔터 후, yes)
+
+5. 탐색기에서 "package.json" 에서 name을 "mongodb-ex" 로 바꿔주기
+   (mongodb 라는 이름은 중복 충돌이 나기 쉬우므로, 다른 이름으로 저장해준다.)

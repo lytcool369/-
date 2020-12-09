@@ -1,0 +1,8 @@
+pip install jupyter		// iPython 클라이언트
+pip install pandas		// 2차원 표 데이터 통계
+pip install matplotlib	// 시각화(차트)
+pip install seaborn		// matplotlib 확장
+pip install bs4		// html 파싱 엔진
+pip install scikit-learn	// 머신러닝 라이브러리
+pip install selenium		// 웹 테스트 자동화
+pip install xlrd		// 엑셀 라이브러리

@@ -1,0 +1,154 @@
+1. AWS 접속
+
+2. [EC2를 사용하여] 를 클릭
+
+3. Ubuntu 검색 - 18.04 선택
+
+4. t2.micro - 검토 및 시작
+
+5. 시작하기 - 새 키 페어 생성 - 키 페어 이름 입력 - 다운로드
+  # 키페어 절대 잃어버리지 말것!! 잃어버리면 처음부터 해야됨
+
+6. 인스턴스 시작 - 인스턴스 보기
+
+7. 인스턴스 선택 - 세부사항에서 [퍼블릭 IPv4 주소 확인]
+ => 18.222.254.158
+
+8. git bash 실행
+
+9. ssh -i [다운받은 keypair 드래그해서 끌어넣기] - yes
+
+10. 파일질라 다운로드 - 설치 - 실행
+
+11. 왼쪽 상단에 [사이트 관리자] 실행 - New site - 이름 지정
+
+12. 일반
+     프로토콜 : SFTP
+     호스트 : [퍼블릭 IPv4 주소]
+     로그온 유형 : 키 파일
+     사용자 : ubuntu
+     키파일 : [다운받은 키 파일]
+
+13. 연결 - 비밀번호 저장 안함 - 항상 이 호스트를 신뢰하고 이 키를 캐시에 등록 - 확인
+
+14. 왼쪽 하단에서 전송할 파일 찾기 - 오른쪽으로 드래그 & 드롭
+
+15. git bash 에서 아래 코드를 입력
+  - sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 10
+
+16. 업로드한 파이썬 파일 실행 확인
+  ex) python hello.py
+
+17. 아래 코드를 입력
+  - sudo apt-get update
+  - sudo apt-get install -y python3-pip
+  - sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
+
+18. 버전 확인 (python 3.6)
+  - pip --version
+
+19. 아래 라이브러리를 설치
+  - pip install flask pymongo requests bs4
+
+20. AWS 에서 [보안] 탭 클릭 - 보안 그룹 클릭
+
+21. 인바운드 규칙 - 인바운드 규칙 편집
+     소스 : 위치 무관
+
+규칙 추가
+     유형 : HTTP
+     소스 : 위치 무관
+
+규칙 추가
+     포트 번호 : 5000
+     소스 : 위치 무관
+
+규칙 추가
+     포트 번호 : 20717
+     소스 : 위치 무관
+
+22. git bash 에서 아래 코드 입력
+  - wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -&&
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list&&
+sudo apt-get update&&
+sudo apt-get install -y mongodb-org
+
+23. 아래 코드 입력 (아무것도 안뜨는게 성공한것)
+  - sudo service mongod start
+
+24. mongoDB 실행 확인
+  - mongo
+
+25. mongoDB 보안 설정 소스 입력
+  - use admin;
+  - db.createUser({user:"lytcool36", pwd:"adzwx321", roles:["root"]});
+
+26. exit 으로 mongoDB 나오기
+
+27. 서버 재시작
+  - sudo service mongod restart;
+
+28. 파일 편집
+  - sudo vi /etc/mongod.conf
+   => bindIp : 0.0.0.0  으로 수정 (모든 네트워크에서 접속을 허용)
+   => security 주석 풀기
+   => security 아래줄에 두칸 띄고 (다른 곳과 라인을 맞추고)
+   => authorization: enabled
+
+29. 서버 재시작
+  - sudo service mongod restart;
+
+30. Robo 3T 실행 - connection - create - Authentication 탭 - Perform authentication 체크
+     User Name : lytcool36    (위에서 설정한 값으로)
+     Password   : adzwx321    (위에서 설정한 값으로)
+
+31. Connection 탭
+     Name : [알아서 설정]
+     Address : [퍼블릭 IPv4 주소]
+
+32. save - connect
+
+33. 파이참의 db url을 바꿔준다
+    'localhost' -> 'mongodb://[아이디]:[비밀번호]@[퍼블릭 IPv4 주소]
+    app.run("localhost"....) -> app.run("0.0.0.0"....)
+
+34. 파일질라에서 오른쪽에 폴더생성
+  - fav_movie_backend
+
+35. 만든 폴더안에 app.py 드래그&드롭
+
+36. git bash 에서 
+  - cd /home/ubuntu/fav_movie_backend
+  - python app.py
+
+37. 웹에서 동작을 확인
+
+38. git bash 에서 ctrl + c 로 동작 중지
+
+39. 포트 번호 떼기
+  - sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 5000
+
+40. 터미널을 종료하여도 항시 서버 동작
+  - nohup python app.py &
+
+
+
+서버 끄기
+
+1. 접속
+  - ssh -i <pem 파일 위치> ubuntu@AWS아이피
+
+2. 서버 확인
+  - ps -ef | grep 'python'
+
+3. app.py 구동중인 주소확인
+
+4. 서버 종료 (app.py만)
+  - kill -9 20657
+  - kill -9 20665
+
+
+
+Cross Origin 문제
+ - pip install git+https://github.com/ssut/py-hanspell.git
+ - pip install flask_cors

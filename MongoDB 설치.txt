@@ -1,0 +1,46 @@
+
+웬만하면 C드라이브에… (권한 문제 때문에 )
+
+1.  C드라이브에 data/db 폴더 만들기
+   ex) C:\data\db
+
+2. https://www.mongodb.com/try/download/community
+
+3. 위 링크에서 On-Premises 탭에서 MongoDB Community Server 클릭 후 다운로드 
+   ( OS : Widows, package : MSI )
+
+4. 설치 진행 - Custom 클릭 - 오른쪽 아래에 Browse 클릭 - C:\data\db\ 폴더를 선택하고 OK
+
+5. Location이 C:\data\db\ 로 바뀐 것 확인
+
+6. Install MOngoDB Compass 선택은 해지
+
+7. ———환경변수------
+시스템 변수 - Path - C:\data\db\bin 등록하기
+
+8. cmd창을 관리자 권한으로 열어서 mongod 실행 확인하기
+
+9. https://robomongo.org/download
+
+10. 오른쪽에 있는 Robo3T 다운로드 후 설치
+
+11. cmd에서 mongod( 서버 ) 를 항상 띄워놓고, mongo로 접속 확인하기
+
+12. Robo 3T - file - connect - create - 이름 대충 정하고 - test - connect
+
+13. 파이참 실행
+
+14. 바탕화면에 [bit-mongo] 폴더 생성
+
+15. 파이참으로 폴더 오픈
+
+16. Project Interpreter 설정 - + - Project Interpreter: - show all - + - location 확인 후 전부 ok
+
+17. bit-mongo 에 venv 폴더가 생성된 것을 확인
+
+18. 라이브러리 추가
+	- pymongo
+	- Flask
+
+
+  

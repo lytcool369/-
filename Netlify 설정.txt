@@ -1,0 +1,12 @@
+1. 로그인
+
+2. new project
+
+3. git hub 연결
+
+4. 프로젝트 선택
+
+5. 빌드 커맨드 수정하기
+ - CI= npm run build
+
+6. 만들기
